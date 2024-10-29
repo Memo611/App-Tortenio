@@ -7,7 +7,7 @@ const logo = require('../../../assets/logo.jpg');
 import styles from '../../Styles/Styles';
 
 
-function Login() {
+function Login({ navigation }) {
     return (
         <KeyboardAwareScrollView
             style={styles.container}
@@ -52,7 +52,7 @@ function Login() {
                 </TouchableOpacity>
 
                 {/* Botón de inicio de sesión */}
-                <TouchableOpacity style={styles.loginButton}>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.loginButton}>
                     <Text style={styles.loginButtonText}>Entrar</Text>
                 </TouchableOpacity>
 

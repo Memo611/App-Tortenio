@@ -15,6 +15,25 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: -40,
     },
+    logoContainerRegister: {
+        alignItems: 'center',
+        marginTop: 10,
+        marginBottom: -80,
+    },
+    iconoContainerUser: {
+        height: 50,
+        zIndex: 3,      
+    },
+    IconoUser: {
+        width: 150,
+        height: 150,
+        borderRadius: 150,
+    },
+    LogoRegister:{
+        width: 250,
+        height: 250,
+        borderRadius: 150,
+    },
     logo: {
         width: 250,
         height: 250,
@@ -29,13 +48,30 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         alignItems: 'center',
         width: '100%',
-        marginTop: '30%',
+        marginTop: '11%',
+    },
+    formContainerUser:{
+        flex: 1,
+        backgroundColor: '#fff',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        padding: 20,
+        paddingTop: 40,
+        alignItems: 'center',
+        width: '100%',
     },
     loginText: {
         fontSize: 24,
         fontWeight: 'bold',
         color: '#333',
-        marginBottom: 20,
+        marginBottom: 10,
+    },
+    RegisterText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#333',
+        marginTop: 65,
+        marginBottom: 10,
     },
     inputContainer: {
         flexDirection: 'row',

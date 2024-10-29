@@ -12,8 +12,7 @@ function Login({ navigation }) {
         <KeyboardAwareScrollView
             style={styles.container}
             contentContainerStyle={styles.scrollContent}
-            enableOnAndroid={true}
-            extraScrollHeight={40} // Ajuste para evitar desplazamiento adicional
+            enableOnAndroid={false}
         >
             {/* Logo */}
             <View style={styles.logoContainer}>
@@ -59,7 +58,7 @@ function Login({ navigation }) {
                 {/* Enlace de registro */}
                 <View style={styles.registerContainer}>
                     <Text style={styles.registerText}>¿No tienes cuenta? </Text>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
                         <Text style={styles.registerLink}>Regístrate ahora</Text>
                     </TouchableOpacity>
                 </View>

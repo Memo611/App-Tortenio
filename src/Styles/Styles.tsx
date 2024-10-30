@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
     logoContainerRegister: {
         alignItems: 'center',
         marginTop: 10,
-        marginBottom: -80,
+        marginBottom: -150,
     },
     iconoContainerUser: {
-        height: 50,
+        height: 10,
+        marginTop: 80,
         zIndex: 3,      
     },
     IconoUser: {
@@ -30,8 +31,8 @@ const styles = StyleSheet.create({
         borderRadius: 150,
     },
     LogoRegister:{
-        width: 250,
-        height: 250,
+        width: 200,
+        height: 200,
         borderRadius: 150,
     },
     logo: {
@@ -55,8 +56,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
+        margin: 70,
         padding: 20,
-        paddingTop: 40,
+        paddingTop: 30,
         alignItems: 'center',
         width: '100%',
     },
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: '#ddd',
         borderWidth: 1,
-        borderRadius: 25,
+        borderRadius: 15,
         paddingHorizontal: 15,
         marginVertical: 15,
         width: '90%',
@@ -105,6 +107,20 @@ const styles = StyleSheet.create({
         width: '90%',
         marginVertical: 10,
         height: 50,
+    },
+    CancelButton: {
+        backgroundColor: '#fff',
+        borderRadius: 25,
+        paddingVertical: 15,
+        alignItems: 'center',
+        width: '90%',
+        marginVertical: 10,
+        height: 50,
+    },
+    CancelButtonText: {
+        color: '#D64619',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     loginButtonText: {
         color: '#fff',

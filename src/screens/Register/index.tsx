@@ -19,7 +19,8 @@ export default function Register({navigation}) {
         <View style={styles.logoContainerRegister}>
             <Image source={logo} style={styles.LogoRegister} />
         </View>
-
+        
+        {/* icono usuario*/}
         <View style={styles.iconoContainerUser}>
             <Image source={logo} style={styles.IconoUser} />
         </View>
@@ -72,8 +73,8 @@ export default function Register({navigation}) {
             </View>
 
             {/* Botón de Cancelar */}
-            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text style={styles.registerLink}>Cancelar</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.CancelButton}>
+                <Text style={styles.CancelButtonText}>Cancelar</Text>
             </TouchableOpacity>
             {/* Botón de Registrarse */}
             <TouchableOpacity style={styles.loginButton}>

@@ -1,69 +1,79 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const logo = require('../../../assets/logo.jpg');
 import styles from '../../Styles/Styles';
 
-
 function Login({ navigation }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = () => {
+        if (!email || !password) {
+            Alert.alert('Error', 'Por favor ingresa todos los campos.');
+            return;
+        }
+
+        // Aquí simula autenticación; puedes reemplazar esto con una llamada a tu backend
+        if (email === 'test@tortenio.com' && password === '123456') {
+            navigation.navigate('Home'); // Redirige a la pantalla de Home al iniciar sesión
+        } else {
+            Alert.alert('Error', 'Correo o contraseña incorrectos.');
+        }
+    };
+
     return (
-        <KeyboardAwareScrollView
-            style={styles.container}
-            contentContainerStyle={styles.scrollContent}
-            enableOnAndroid={false}
-        >
-            {/* Logo */}
-            <View style={styles.logoContainer}>
-                <Image source={logo} style={styles.logo} />
-            </View>
-
-            {/* Formulario */}
-            <View style={styles.formContainer}>
-                <Text style={styles.loginText}>Login</Text>
-
-                {/* Campo de correo electrónico */}
-                <View style={styles.inputContainer}>
-                    <Icon name="email" size={20} color="#666" style={styles.icon} />
-                    <TextInput
-                        placeholder="Correo electrónico"
-                        style={styles.input}
-                        keyboardType="email-address"
-                        returnKeyType="next"
-                    />
+        <ScrollView scrollEnabled={false} contentContainerStyle={styles.scrollContent}>
+                <View style={styles.logoContainer}>
+                    <Image source={logo} style={styles.logo} />
                 </View>
 
-                {/* Campo de contraseña */}
-                <View style={styles.inputContainer}>
-                    <Icon name="lock" size={20} color="#666" style={styles.icon} />
-                    <TextInput
-                        placeholder="Contraseña"
-                        style={styles.input}
-                        secureTextEntry
-                        returnKeyType="done"
-                    />
-                </View>
+                <View style={styles.formContainer}>
+                    <Text style={styles.loginText}>Login</Text>
 
-                {/* Enlace de recuperación de contraseña */}
-                <TouchableOpacity>
-                    <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
-                </TouchableOpacity>
+                    <View style={styles.inputContainer}>
+                        <Icon name="email" size={20} color="#666" style={styles.icon} />
+                        <TextInput
+                            placeholder="Correo electrónico"
+                            style={styles.input}
+                            keyboardType="email-address"
+                            returnKeyType="next"
+                            value={email}
+                            onChangeText={setEmail}
+                        />
+                    </View>
 
-                {/* Botón de inicio de sesión */}
-                <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.loginButton}>
-                    <Text style={styles.loginButtonText}>Entrar</Text>
-                </TouchableOpacity>
+                    <View style={styles.inputContainer}>
+                        <Icon name="lock" size={20} color="#666" style={styles.icon} />
+                        <TextInput
+                            placeholder="Contraseña"
+                            style={styles.input}
+                            secureTextEntry
+                            returnKeyType="done"
+                            value={password}
+                            onChangeText={setPassword}
+                        />
+                    </View>
 
-                {/* Enlace de registro */}
-                <View style={styles.registerContainer}>
-                    <Text style={styles.registerText}>¿No tienes cuenta? </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <Text style={styles.registerLink}>Regístrate ahora</Text>
+                    <TouchableOpacity>
+                        <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+                        <Text style={styles.loginButtonText}>Entrar</Text>
+                    </TouchableOpacity>
+
+                    <View style={styles.registerContainer}>
+                        <Text style={styles.registerText}>¿No tienes cuenta? </Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                            <Text style={styles.registerLink}>Regístrate ahora</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-        </KeyboardAwareScrollView>
+           
+        </ScrollView>
     );
 }
 

@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     scrollContent: {
         flexGrow: 1,
         justifyContent: 'center',
+        backgroundColor: '#D64619',
         alignItems: 'center',
     },
     logoContainer: {
@@ -23,14 +24,14 @@ const styles = StyleSheet.create({
     iconoContainerUser: {
         height: 10,
         marginTop: 80,
-        zIndex: 3,      
+        zIndex: 3,
     },
     IconoUser: {
         width: 150,
         height: 150,
         borderRadius: 150,
     },
-    LogoRegister:{
+    LogoRegister: {
         width: 200,
         height: 200,
         borderRadius: 150,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: '11%',
     },
-    formContainerUser:{
+    formContainerUser: {
         flex: 1,
         backgroundColor: '#fff',
         borderTopLeftRadius: 30,
@@ -86,6 +87,22 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 70,
     },
+    rowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        marginVertical: 10,
+    },
+    halfInputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderColor: '#ddd',
+        borderWidth: 1,
+        borderRadius: 15,
+        paddingHorizontal: 15,
+        width: '48%',
+        height: 70,
+    },
     icon: {
         marginRight: 10,
     },
@@ -108,17 +125,29 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         height: 50,
     },
-    CancelButton: {
+    cancelButton: {
         backgroundColor: '#fff',
         borderRadius: 25,
         paddingVertical: 15,
         alignItems: 'center',
-        width: '90%',
-        marginVertical: 10,
-        height: 50,
+        width: '48%',
+        borderWidth: 1,
+        borderColor: '#D64619',
     },
-    CancelButtonText: {
+    registerButton: {
+        backgroundColor: '#D64619',
+        borderRadius: 25,
+        paddingVertical: 15,
+        alignItems: 'center',
+        width: '48%',
+    },
+    cancelButtonText: {
         color: '#D64619',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    registerButtonText: {
+        color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
     },

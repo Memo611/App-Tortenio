@@ -167,6 +167,22 @@ const styles = StyleSheet.create({
         color: '#D64619',
         fontWeight: 'bold',
     },
+    changePhotoButton: {
+        backgroundColor: '#FFF',
+        padding: 10,
+        borderRadius: 20,
+        position: 'absolute', 
+        bottom: -150,           
+        right: 10,            
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 5,     
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 12,
+        marginTop: 4,
+    },
 });
 
 export default styles;

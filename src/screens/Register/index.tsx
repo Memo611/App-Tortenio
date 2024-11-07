@@ -82,7 +82,7 @@ export default function Register({ navigation }) {
                 {userImage ? (
                     <Image source={userImage} style={styles.IconoUser} />
                 ) : (
-                    <Image source={logo} style={styles.IconoUser} />
+                    <Image source={iconUser} style={styles.IconoUser} />
                 )}
                 {/* Botón para cambiar la foto de perfil */}
                 <TouchableOpacity onPress={handleChangePhoto} style={styles.changePhotoButton}>

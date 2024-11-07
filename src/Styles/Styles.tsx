@@ -13,13 +13,25 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: 'center',
-        marginTop: 50,
-        marginBottom: -40,
+        marginTop: 20,
+        marginBottom: -20,
     },
     logoContainerRegister: {
         alignItems: 'center',
         marginTop: 10,
         marginBottom: -150,
+    },
+    iconoContainerUserHome: {
+        height: 10,
+        marginTop: 20,
+        marginLeft: 20,
+        zIndex: 3,
+    },
+    IconoUserHome:{
+        marginTop: 5,
+        width: 50,
+        height: 50,
+        borderRadius: 150,
     },
     iconoContainerUser: {
         height: 10,
@@ -103,6 +115,22 @@ const styles = StyleSheet.create({
         width: '48%',
         height: 70,
     },
+    Buscar:{
+        flexDirection:'row',
+        alignItems:'center',
+        borderColor: '#ddd',
+        borderWidth: 1,
+        borderRadius: 15,
+        paddingHorizontal: 15,
+        marginLeft: 80,
+        width:'50%',
+        height: 40,
+    },
+    BuscarText:{
+        flex: 1,
+        fontSize: 16,
+
+    },
     icon: {
         marginRight: 10,
     },
@@ -171,12 +199,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         padding: 10,
         borderRadius: 20,
-        position: 'absolute', 
-        bottom: -150,           
-        right: 10,            
+        position: 'absolute',
+        bottom: -150,
+        right: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        elevation: 5,     
+        elevation: 5,
     },
     errorText: {
         color: 'red',

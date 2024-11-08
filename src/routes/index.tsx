@@ -12,9 +12,9 @@ function ContainerRoutes() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Register" component={Register} />
+                <Stack.Screen name="Login"  options={{ headerShown: false }} component={Login} />
+                <Stack.Screen name="Home" options={{ headerShown: false }} component={Home} />
+                <Stack.Screen name="Register" options={{ headerShown: false }} component={Register} />
             </Stack.Navigator>
         </NavigationContainer>
     );

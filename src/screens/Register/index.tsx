@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { launchImageLibrary, ImageLibraryOptions } from 'react-native-image-picker';
-import styles from '../../Styles/Styles';
+import styles from './RegisterStyles';
+import global from '../../Styles/Styles';
 
 const logo = require('../../../assets/logo.jpg');
 const iconUser = require('../../../assets/iconUser.png');
@@ -71,7 +72,7 @@ export default function Register({ navigation }) {
     };
 
     return (
-        <ScrollView scrollEnabled={false} contentContainerStyle={styles.scrollContent}>
+        <ScrollView scrollEnabled={false} contentContainerStyle={global.scrollContent}>
             {/* Logo de la empresa */}
             <View style={styles.logoContainerRegister}>
                 <Image source={logo} style={styles.LogoRegister} />
@@ -97,20 +98,20 @@ export default function Register({ navigation }) {
                 {/* Campos de Nombre y Apellido en la misma línea */}
                 <View style={styles.rowContainer}>
                     <View style={styles.halfInputContainer}>
-                        <Icon name="person" size={20} color="#666" style={styles.icon} />
+                        <Icon name="person" size={20} color="#666" style={global.icon} />
                         <TextInput
                             placeholder="Nombre"
-                            style={styles.input}
+                            style={global.input}
                             value={nombre}
                             onChangeText={setNombre}
                             returnKeyType="next"
                         />
                     </View>
                     <View style={styles.halfInputContainer}>
-                        <Icon name="person" size={20} color="#666" style={styles.icon} />
+                        <Icon name="person" size={20} color="#666" style={global.icon} />
                         <TextInput
                             placeholder="Apellido"
-                            style={styles.input}
+                            style={global.input}
                             value={apellido}
                             onChangeText={setApellido}
                             returnKeyType="next"
@@ -121,10 +122,10 @@ export default function Register({ navigation }) {
                 {/* Campos de Número de Control y Teléfono en la misma línea */}
                 <View style={styles.rowContainer}>
                     <View style={styles.halfInputContainer}>
-                        <Icon name="badge" size={20} color="#666" style={styles.icon} />
+                        <Icon name="badge" size={20} color="#666" style={global.icon} />
                         <TextInput
                             placeholder="Número de Control"
-                            style={styles.input}
+                            style={global.input}
                             value={numeroControl}
                             onChangeText={setNumeroControl}
                             keyboardType="numeric"
@@ -132,10 +133,10 @@ export default function Register({ navigation }) {
                         />
                     </View>
                     <View style={styles.halfInputContainer}>
-                        <Icon name="phone" size={20} color="#666" style={styles.icon} />
+                        <Icon name="phone" size={20} color="#666" style={global.icon} />
                         <TextInput
                             placeholder="Teléfono"
-                            style={styles.input}
+                            style={global.input}
                             value={telefono}
                             onChangeText={setTelefono}
                             keyboardType="phone-pad"
@@ -145,11 +146,11 @@ export default function Register({ navigation }) {
                 </View>
 
                 {/* Campo de Correo Electrónico */}
-                <View style={styles.inputContainer}>
-                    <Icon name="email" size={20} color="#666" style={styles.icon} />
+                <View style={global.inputContainer}>
+                    <Icon name="email" size={20} color="#666" style={global.icon} />
                     <TextInput
                         placeholder="Correo electrónico"
-                        style={styles.input}
+                        style={global.input}
                         value={correo}
                         onChangeText={setCorreo}
                         keyboardType="email-address"
@@ -158,11 +159,11 @@ export default function Register({ navigation }) {
                 </View>
 
                 {/* Campo de Contraseña */}
-                <View style={styles.inputContainer}>
-                    <Icon name="lock" size={20} color="#666" style={styles.icon} />
+                <View style={global.inputContainer}>
+                    <Icon name="lock" size={20} color="#666" style={global.icon} />
                     <TextInput
                         placeholder="Contraseña"
-                        style={styles.input}
+                        style={global.input}
                         value={contrasena}
                         onChangeText={setContrasena}
                         secureTextEntry

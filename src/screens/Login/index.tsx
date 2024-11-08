@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const logo = require('../../../assets/logo.jpg');
-import styles from '../../Styles/Styles';
+import styles from './LoginStyles';
+import global from '../../Styles/Styles';
 
 function Login({ navigation }) {
     const [email, setEmail] = useState('');
@@ -25,7 +26,7 @@ function Login({ navigation }) {
     };
 
     return (
-        <ScrollView scrollEnabled={false} contentContainerStyle={styles.scrollContent}>
+        <ScrollView scrollEnabled={false}  stickyHeaderHiddenOnScroll={false} contentContainerStyle={global.scrollContent}>
                 <View style={styles.logoContainer}>
                     <Image source={logo} style={styles.logo} />
                 </View>
@@ -33,11 +34,11 @@ function Login({ navigation }) {
                 <View style={styles.formContainer}>
                     <Text style={styles.loginText}>Login</Text>
 
-                    <View style={styles.inputContainer}>
-                        <Icon name="email" size={20} color="#666" style={styles.icon} />
+                    <View style={global.inputContainer}>
+                        <Icon name="email" size={20} color="#666" style={global.icon} />
                         <TextInput
                             placeholder="Correo electrónico"
-                            style={styles.input}
+                            style={global.input}
                             keyboardType="email-address"
                             returnKeyType="next"
                             value={email}
@@ -45,11 +46,11 @@ function Login({ navigation }) {
                         />
                     </View>
 
-                    <View style={styles.inputContainer}>
-                        <Icon name="lock" size={20} color="#666" style={styles.icon} />
+                    <View style={global.inputContainer}>
+                        <Icon name="lock" size={20} color="#666" style={global.icon} />
                         <TextInput
                             placeholder="Contraseña"
-                            style={styles.input}
+                            style={global.input}
                             secureTextEntry
                             returnKeyType="done"
                             value={password}
@@ -72,7 +73,6 @@ function Login({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 </View>
-           
         </ScrollView>
     );
 }

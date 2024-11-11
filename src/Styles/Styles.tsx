@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
         width: '90%',
         height: 70,
     }, 
+    rowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '90%',
+        marginVertical: 10,
+    },   
     //Global
     icon: {
         marginRight: 10,

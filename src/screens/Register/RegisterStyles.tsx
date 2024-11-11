@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     logoContainerRegister: {
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: 40,
         marginBottom: -150,
     },
     LogoRegister: {
@@ -18,14 +18,17 @@ const styles = StyleSheet.create({
         borderRadius: 150,
     },
     iconoContainerUser: {
-        height: 10,
-        marginTop: 80,
+        height: 4,
+        marginTop: 100,
         zIndex: 3,
     },
     IconoUser: {
         width: 150,
         height: 150,
         borderRadius: 150,
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'white'
     },
     changePhotoButton: {
         backgroundColor: '#FFF',

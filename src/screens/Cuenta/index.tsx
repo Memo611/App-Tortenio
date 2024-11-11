@@ -5,11 +5,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const logo = require('../../../assets/logo.jpg');
 const iconUser = require('../../../assets/iconUser.png');
 
-import styles from './HomeStyles';
+import styles from '../Cuenta/CuentaStyles';
 import global from '../../Styles/Styles';
 
 
-function Home({ navigation }) {
+function Cuenta({ navigation }) {
     return (
         <View>
             <View style={styles.ContainerHeader}>
@@ -27,4 +27,4 @@ function Home({ navigation }) {
     );
 }
 
-export default Home;
+export default Cuenta;

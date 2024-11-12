@@ -20,9 +20,6 @@ function Home({ navigation }) {
                     <TextInput style={styles.BuscarText} placeholder='Buscar...'></TextInput>
                 </View>
             </View>
-            <View style={styles.ContainerMenu}>
-                
-            </View>
         </View>
     );
 }

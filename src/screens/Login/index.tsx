@@ -12,17 +12,17 @@ function Login({ navigation }) {
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        if (!email || !password) {
-            Alert.alert('Error', 'Por favor ingresa todos los campos.');
-            return;
-        }
+        // if (!email || !password) {
+        //     Alert.alert('Error', 'Por favor ingresa todos los campos.');
+        //     return;
+        // }
 
-        // Aquí simula autenticación; puedes reemplazar esto con una llamada a tu backend
-        if (email === 'test@tortenio.com' && password === '123456') {
-            navigation.navigate('Home'); // Redirige a la pantalla de Home al iniciar sesión
-        } else {
-            Alert.alert('Error', 'Correo o contraseña incorrectos.');
-        }
+        // // Aquí simula autenticación; puedes reemplazar esto con una llamada a tu backend
+        // if (email === 'test@tortenio.com' && password === '123456') {
+        //     navigation.navigate('Main'); // Redirige a la pantalla de Home al iniciar sesión
+        // } else {
+        //     Alert.alert('Error', 'Correo o contraseña incorrectos.');
+        // }
     };
 
     return (
@@ -62,7 +62,7 @@ function Login({ navigation }) {
                         <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Main')} style={styles.loginButton}>
                         <Text style={styles.loginButtonText}>Entrar</Text>
                     </TouchableOpacity>
 

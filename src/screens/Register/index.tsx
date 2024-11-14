@@ -83,7 +83,7 @@ export default function Register({ navigation }) {
                 )}
                 {/* Botón para cambiar la foto de perfil */}
                 <TouchableOpacity onPress={handleChangePhoto} style={styles.changePhotoButton}>
-                    <Icon name="edit" size={24} color="#D64619" />
+                    <Icon name="edit" size={30} color="white" />
                 </TouchableOpacity>
             </View>
 

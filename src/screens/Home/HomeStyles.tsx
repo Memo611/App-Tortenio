@@ -45,7 +45,66 @@ const styles = StyleSheet.create({
         marginBottom: -4,
         fontSize: 16,
     },
-
+    promotionsContainer: {
+        padding: 10,
+        backgroundColor: '#FFF'
+    },
+    promotionsTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 10
+    },
+    promoItem: {
+        alignItems: 'center',
+        backgroundColor: '#FFA500',
+        borderRadius: 10,
+        padding: 15,
+        marginBottom: 20
+    },
+    promoImage: {
+        width: 100,
+        height: 100,
+        marginBottom: 10
+    },
+    promoText: {
+        fontSize: 16,
+        color: '#FFFFFF',
+        fontWeight: 'bold'
+    },
+    suggestionsContainer: {
+        padding: 10
+    },
+    suggestionsTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 10
+    },
+    suggestionsGrid: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        flexWrap: 'wrap'
+    },
+    suggestionItem: {
+        width: 80,
+        height: 80,
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 5
+    },
+    suggestionImage: {
+        width: 60,
+        height: 60
+    },
+    menuBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: '#FFA500',
+        padding: 10
+    },
 });
 
 export default styles;

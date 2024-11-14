@@ -7,34 +7,26 @@ const styles = StyleSheet.create({
         backgroundColor: '#D64619',
         alignItems: 'center',
     },
-    logoContainerRegister: {
-        alignItems: 'center',
-        marginTop: 40,
-        marginBottom: -150,
-        zIndex: 3
-    },
-    LogoRegister: {
-        width: 200,
-        height: 200,
-        borderRadius: 150,
-    },
     iconoContainerUser: {
         height: 40,
-        marginTop: 40,
+        marginTop: 20,
+        marginBottom: 40,
         zIndex: 3,
     },
     IconoUser: {
-        width: 150,
-        height: 150,
+        width: 190,
+        height: 190,
         borderRadius: 150,
-        borderWidth: 0,
+        borderWidth: 2,
         borderColor: 'black',
-        backgroundColor: 'white'
+        backgroundColor: '#ffcfa9',
     },
     changePhotoButton: {
-        backgroundColor: '#FFF',
+        backgroundColor: '#ffac72',
         padding: 10,
         borderRadius: 20,
+        borderWidth: 2,
+        borderColor: 'white',
         position: 'absolute',
         bottom: -120,
         right: 10,

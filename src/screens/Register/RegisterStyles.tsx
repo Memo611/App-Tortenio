@@ -28,11 +28,10 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'white',
         position: 'absolute',
-        bottom: -120,
+        bottom: -150,
         right: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        elevation: 5,
     },
     formContainerUser: {
         flex: 1,

@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         width: '90%',
         marginVertical: 10,
+        marginTop: 35,
     },    
     halfInputContainer: {
         flexDirection: 'row',

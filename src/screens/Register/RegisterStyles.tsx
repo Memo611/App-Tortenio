@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 40,
         marginBottom: -150,
+        zIndex: 3
     },
     LogoRegister: {
         width: 200,
@@ -18,15 +19,15 @@ const styles = StyleSheet.create({
         borderRadius: 150,
     },
     iconoContainerUser: {
-        height: 4,
-        marginTop: 100,
+        height: 40,
+        marginTop: 40,
         zIndex: 3,
     },
     IconoUser: {
         width: 150,
         height: 150,
         borderRadius: 150,
-        borderWidth: 1,
+        borderWidth: 0,
         borderColor: 'black',
         backgroundColor: 'white'
     },
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 20,
         position: 'absolute',
-        bottom: -150,
+        bottom: -120,
         right: 10,
         alignItems: 'center',
         justifyContent: 'center',
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        margin: 70,
+        marginTop: 130,
         padding: 20,
         paddingTop: 30,
         alignItems: 'center',
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         color: '#333',
-        marginTop: 65,
+        marginTop: 0,
         marginBottom: 10,
     },
     rowContainer: {

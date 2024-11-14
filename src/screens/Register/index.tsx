@@ -73,10 +73,6 @@ export default function Register({ navigation }) {
 
     return (
         <ScrollView scrollEnabled={false} contentContainerStyle={global.scrollContent}>
-            {/* Logo de la empresa */}
-            <View style={styles.logoContainerRegister}>
-                <Image source={logo} style={styles.LogoRegister} />
-            </View>
 
             {/* Imagen de perfil del usuario */}
             <View style={styles.iconoContainerUser}>

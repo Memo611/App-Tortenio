@@ -36,7 +36,7 @@ function MainTabs() {
                     // Retorna el icono de MaterialIcons con el color y tamaño definidos
                     return <Icon name={iconName} size={size} color={color} />;
                 },
-                tabBarActiveTintColor: 'white', // Color para el ícono activo
+                tabBarActiveTintColor: '#c52d09', // Color para el ícono activo
                 tabBarInactiveTintColor: 'white', // Color para el ícono inactivo
                 tabBarStyle: {
                     backgroundColor: '#fd5b12', // Color de fondo naranja

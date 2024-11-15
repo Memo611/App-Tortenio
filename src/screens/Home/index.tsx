@@ -7,8 +7,10 @@ const iconUser = require('../../../assets/iconUser.png');
 
 const promoImage = require('../../../assets/logo.jpg'); // Reemplaza con tu imagen
 const suggestionImages = [
-    require('../../../assets/logo.jpg'),
-    require('../../../assets/iconUser.png'),
+    require('../../../assets/coca.jpg'),
+    require('../../../assets/waffles.png'),
+    require('../../../assets/tostitos.png'),
+    require('../../../assets/burritos.jpg'),
 ]; // Reemplaza con tus imágenes
 import styles from './HomeStyles';
 import global from '../../Styles/Styles';
@@ -45,13 +47,6 @@ function Home({ navigation }) {
                         </View>
                     ))}
                 </View>
-            </View>
-
-            {/* Barra de menú */}
-            <View style={styles.menuBar}>
-                <Icon name="notifications" size={30} color="#FFFFFF" />
-                <Icon name="home" size={30} color="#FFFFFF" />
-                <Icon name="shopping-bag" size={30} color="#FFFFFF" />
             </View>
         </View>
     );

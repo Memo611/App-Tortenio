@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         zIndex: 3,
     },
     ContainerHeader: {
-        backgroundColor: '#D64619',
+        backgroundColor: '#fd5b12',
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
         width: '100%',
@@ -50,14 +50,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF'
     },
     promotionsTitle: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 10
     },
     promoItem: {
         alignItems: 'center',
-        backgroundColor: '#FFA500',
+        backgroundColor: '#fe7226',
         borderRadius: 10,
         padding: 15,
         marginBottom: 20
@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
         padding: 10
     },
     suggestionsTitle: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 10
+        marginTop: 25,
+        marginBottom: 30
     },
     suggestionsGrid: {
         flexDirection: 'row',
@@ -87,8 +88,8 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap'
     },
     suggestionItem: {
-        width: 80,
-        height: 80,
+        width: 180,
+        height: 180,
         borderRadius: 10,
         backgroundColor: '#FFF',
         alignItems: 'center',
@@ -96,14 +97,8 @@ const styles = StyleSheet.create({
         margin: 5
     },
     suggestionImage: {
-        width: 60,
-        height: 60
-    },
-    menuBar: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        backgroundColor: '#FFA500',
-        padding: 10
+        width: 150,
+        height: 150
     },
 });
 

@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const logo = require('../../../assets/logo.jpg');
 const iconUser = require('../../../assets/iconUser.png');
 
-function menu ({ navigation }) {
+function Menu  ({ navigation }) {
     return(
         <View>
             <View>
@@ -20,4 +20,4 @@ function menu ({ navigation }) {
     );
 }
 
-export default menu;
+export default Menu;

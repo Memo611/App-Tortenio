@@ -10,7 +10,7 @@ const iconUser = require('../../../assets/iconUser.png');
 
 export default function Register({ navigation }) {
     // Estado para almacenar la imagen de perfil seleccionada por el usuario
-    const [userImage, setUserImage] = useState<{ uri: string | undefined } | null>(null);
+    const [userImage, setUserImage] = useState(null);
 
     // Estados para los campos del formulario
     const [nombre, setNombre] = useState('');
@@ -40,7 +40,7 @@ export default function Register({ navigation }) {
     };
 
     // Función para validar y procesar el registro
-    const handleRegister = () => {
+    const handleRegister = async () => {
         // Validaciones básicas de los campos
         if (!nombre.trim()) {
             Alert.alert('Error', 'El campo de Nombre es obligatorio');
@@ -66,13 +66,50 @@ export default function Register({ navigation }) {
             Alert.alert('Error', 'La contraseña debe tener al menos 6 caracteres');
             return;
         }
+        const formData = new FormData();
+        formData.append('Nombre', nombre);
+        formData.append('Apellidos', apellido);
+        formData.append('Num_Control', numeroControl);
+        formData.append('Correo', correo);
+        formData.append('Contrasena', contrasena);
+        formData.append('Telefono', telefono);
+        formData.append('Habilitado', '1');
+    
+    // Asegúrate de agregar la imagen de perfil si existe
+    if (userImage) {
+        const photo = {
+            uri: userImage.uri,
+            type: 'image/jpeg',  // o el tipo de imagen correspondiente
+            name: 'profile_picture.jpg', // O el nombre dinámico
+        };
+        formData.append('profile_image', photo);
 
-        // Aquí se puede agregar el proceso de registro (por ejemplo, llamar a una API)
-        Alert.alert('Éxito', 'Registro completado con éxito');
+        try {
+            const response = await fetch('http://192.168.100.104:3000/register', { // Reemplaza 192.168.x.x con la IP local de tu máquina
+                method: 'POST',
+                headers: {
+                'Content-Type': 'multipart/form-data', // Cambiar a multipart para enviar archivos
+            },
+            body: formData,
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            Alert.alert('Éxito', data.message);
+            navigation.navigate('Login');
+        } else {
+            Alert.alert('Error', data.message);
+        }
+    } catch (error) {
+        console.error('Error al registrar el usuario:', error);
+        Alert.alert('Error', 'Hubo un problema con el servidor');
+    }
+};
     };
 
     return (
-        <ScrollView scrollEnabled={false} contentContainerStyle={global.scrollContent}>
+        <ScrollView contentContainerStyle={global.scrollContent}>
 
             {/* Imagen de perfil del usuario */}
             <View style={styles.iconoContainerUser}>
@@ -162,7 +199,7 @@ export default function Register({ navigation }) {
                         style={global.input}
                         value={contrasena}
                         onChangeText={setContrasena}
-                        secureTextEntry
+                        secureTextEntry={true}
                         returnKeyType="done"
                     />
                 </View>

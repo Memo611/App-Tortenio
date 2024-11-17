@@ -1,7 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 //Screens
 import Login from '../screens/Login/index'
 import Home from '../screens/Home/index'
@@ -11,6 +13,12 @@ import Menu from '../screens/Menu/index'
 import Notificaciones from '../screens/Notificaciones/index'
 import Carrito from '../screens/Carrito/index'
 
+// Icons
+const homeIcon = require('../../assets/home.png');
+const notificationsIcon = require('../../assets/notifications.png');
+const menuIcon = require('../../assets/Menu.png');
+const cartIcon = require('../../assets/shopping_cart_checkout.png');
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -18,24 +26,35 @@ const Tab = createBottomTabNavigator();
 function MainTabs() {
     return (
         <Tab.Navigator
-            screenOptions={({ route }) => ({
-                tabBarIcon: ({ color, size }) => {
-                    let iconName;
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+                let iconSource;
 
-                    // Define el icono para cada tab
-                    if (route.name === 'Home') {
-                        iconName = 'home';
-                    } else if (route.name === 'Notificaciones') {
-                        iconName = 'notifications';
-                    } else if (route.name === 'Menu') {
-                        iconName = 'menu';
-                    } else if (route.name === 'Carrito') {
-                        iconName = 'shopping-cart';
-                    }
+                // Asigna las imágenes según el nombre del tab
+                if (route.name === 'Home') {
+                    iconSource = homeIcon;
+                } else if (route.name === 'Notificaciones') {
+                    iconSource = notificationsIcon;
+                } else if (route.name === 'Menu') {
+                    iconSource = menuIcon;
+                } else if (route.name === 'Carrito') {
+                    iconSource = cartIcon;
+                }
 
-                    // Retorna el icono de MaterialIcons con el color y tamaño definidos
-                    return <Icon name={iconName} size={size} color={color} />;
-                },
+                // Renderiza la imagen con un estilo específico
+                return (
+                    <Image
+                        source={iconSource}
+                        style={{
+                            width: size * 1.7,
+                            height: size * 1.7,
+                            tintColor: focused ? '#c52d09' : 'white', // Cambia el color de la imagen según el estado del tab
+                            alignSelf: 'center',
+                            marginTop: 20,
+                        }}
+                    />
+                );
+            },
                 tabBarActiveTintColor: '#c52d09', // Color para el ícono activo
                 tabBarInactiveTintColor: 'white', // Color para el ícono inactivo
                 tabBarStyle: {

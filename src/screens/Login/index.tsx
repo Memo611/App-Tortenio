@@ -38,7 +38,7 @@ function Login({ navigation }) {
         }
     
         try {
-            const response = await fetch('http://192.168.100.104:3000/login', {
+            const response = await fetch('http://10.0.2.2:3000/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ function Login({ navigation }) {
             <View style={styles.formContainer}>
                 <Text style={styles.loginText}>Login</Text>
                 <View style={global.inputContainer}>
-                    <AntDesign name= 'mail' style={global.icon} color="#666" />
+                    <Icon name= 'mail' style={global.icon} color="#666" />
                     <TextInput
                         placeholder="Correo electrónico o Núm. Control"
                         style={global.input}

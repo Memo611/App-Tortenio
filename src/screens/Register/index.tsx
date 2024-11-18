@@ -104,7 +104,7 @@ export default function Register({ navigation }) {
             formData.append('profile_image', photo);
 
             try {
-                const response = await fetch('http://192.168.100.104:3000/register', {
+                const response = await fetch('http://10.0.2.2:3000/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'multipart/form-data',

@@ -48,17 +48,50 @@ const promotions = [
     },
 ];
 
-const suggestionImages = [
-    require('../../../assets/coca.jpg'),
-    require('../../../assets/waffles.png'),
-    require('../../../assets/tostitos.png'),
-    require('../../../assets/burritos.jpg'),
+const suggestions = [
+    {
+        id: 3,
+        image: require('../../../assets/waffles.png'),
+        name: 'Waffles con Chocolate',
+        cost: '$40',
+        time: '12 minutos',
+        quantity: 1,
+        description: 'Waffles con un toque de chocolate derretido y crema batida.',
+    },
+    {
+        id: 4,
+        image: require('../../../assets/coca.jpg'),
+        name: 'Coca-Cola',
+        cost: '$20',
+        time: '5 minutos',
+        quantity: 1,
+        description: 'Bebida refrescante clásica.',
+    },
+    {
+        id: 5,
+        image: require('../../../assets/tostitos.png'),
+        name: 'Tostitos',
+        cost: '$25',
+        time: '8 minutos',
+        quantity: 1,
+        description: 'Tostitos con limón y chile.',
+    },
+    {
+        id: 6,
+        image: require('../../../assets/burritos.jpg'),
+        name: 'Burritos',
+        cost: '$35',
+        time: '10 minutos',
+        quantity: 1,
+        description: 'Deliciosos burritos rellenos de carne y queso.',
+    },
 ];
 
 function Home({ navigation }) {
     const [currentPromoIndex, setCurrentPromoIndex] = useState(0);
     const [modalVisible, setModalVisible] = useState(false);
     const [currentPromo, setCurrentPromo] = useState(promotions[0]);
+    const [currentSuggestion, setCurrentSuggestion] = useState(null);
     const { cart, addToCart } = useContext(CartContext);
     const fadeAnim = new Animated.Value(1);
 
@@ -95,6 +128,10 @@ function Home({ navigation }) {
         setModalVisible(false);
     };
 
+    const handleSuggestionClick = (item) => {
+        setCurrentSuggestion(item);  // Cambia solo el producto de la sugerencia
+        setModalVisible(true);        // Abre el modal
+    };
     return (
         <View style={{ flex: 1 }}>
             {/* Encabezado */}
@@ -141,11 +178,23 @@ function Home({ navigation }) {
             >
                 <View style={modalStyles.modalContainer}>
                     <View style={modalStyles.modalContent}>
-                        <Image source={currentPromo.image} style={modalStyles.modalImage} />
-                        <Text style={modalStyles.modalTitle}>{currentPromo.name}</Text>
-                        <Text style={modalStyles.modalCost}>Costo: {currentPromo.cost}</Text>
-                        <Text style={modalStyles.modalTime}>Tiempo de preparación: {currentPromo.time}</Text>
-                        <Text style={modalStyles.modalDescription}>{currentPromo.description}</Text>
+                        {/* Aquí verificamos si currentSuggestion está definido. Si no lo está, mostramos la promoción */}
+                        <Image
+                            source={(currentSuggestion || currentPromo).image}
+                            style={modalStyles.modalImage}
+                        />
+                        <Text style={modalStyles.modalTitle}>
+                            {(currentSuggestion || currentPromo).name}
+                        </Text>
+                        <Text style={modalStyles.modalCost}>
+                            Costo: {(currentSuggestion || currentPromo).cost}
+                        </Text>
+                        <Text style={modalStyles.modalTime}>
+                            Tiempo de preparación: {(currentSuggestion || currentPromo).time}
+                        </Text>
+                        <Text style={modalStyles.modalDescription}>
+                            {(currentSuggestion || currentPromo).description}
+                        </Text>
                         <TouchableOpacity
                             style={modalStyles.addButton}
                             onPress={handleAddToCart}
@@ -162,17 +211,20 @@ function Home({ navigation }) {
                 </View>
             </Modal>
 
+
             {/* Sección de Sugerencias del Día */}
             <View style={styles.suggestionsContainer}>
                 <Text style={styles.suggestionsTitle}>Sugerencias del Día</Text>
                 <FlatList
-                    data={suggestionImages}
-                    keyExtractor={(item, index) => index.toString()}
+                    data={suggestions}
+                    keyExtractor={(item) => item.id.toString()}
                     numColumns={2} // Grid de 2 columnas
                     renderItem={({ item }) => (
-                        <View style={styles.suggestionItem}>
-                            <Image source={item} style={styles.suggestionImage} />
-                        </View>
+                        <TouchableOpacity onPress={() => handleSuggestionClick(item)}>
+                            <View style={styles.suggestionItem}>
+                                <Image source={item.image} style={styles.suggestionImage} />
+                            </View>
+                        </TouchableOpacity>
                     )}
                 />
             </View>

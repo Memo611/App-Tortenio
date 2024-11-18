@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     View,
     Text,
@@ -8,35 +8,42 @@ import {
     Modal,
     StyleSheet,
     Animated,
-    Dimensions,
     FlatList,
 } from 'react-native';
 import styles from './HomeStyles';
 import modalStyles from './modalStyles';
+import { CartContext } from '../../context/CartContext';
 
 const logo = require('../../../assets/logo.jpg');
 const iconUser = require('../../../assets/iconUser.png');
+const cartIcon = require('../../../assets/iconos/shopping_cart_checkout.png');
 
 const promotions = [
     {
+        id: 1,
         image: require('../../../assets/burritos.jpg'),
         name: 'Papas Sazonadas',
         cost: '$30',
         time: '10 minutos',
+        quantity: 1,
         description: 'Crujientes papas sazonadas con especias.',
     },
     {
+        id: 2,
         image: require('../../../assets/coca.jpg'),
         name: 'Hamburguesa Especial',
         cost: '$50',
         time: '15 minutos',
+        quantity: 1,
         description: 'Hamburguesa de carne premium con queso y salsas especiales.',
     },
     {
+        id: 3,
         image: require('../../../assets/waffles.png'),
         name: 'Waffles con Chocolate',
         cost: '$40',
         time: '12 minutos',
+        quantity: 1,
         description: 'Waffles con un toque de chocolate derretido y crema batida.',
     },
 ];
@@ -51,8 +58,8 @@ const suggestionImages = [
 function Home({ navigation }) {
     const [currentPromoIndex, setCurrentPromoIndex] = useState(0);
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalPromo, setModalPromo] = useState(promotions[0]); // Estado separado para la promoción del modal
-    const [cart, setCart] = useState([]);
+    const [currentPromo, setCurrentPromo] = useState(promotions[0]);
+    const { cart, addToCart } = useContext(CartContext);
     const fadeAnim = new Animated.Value(1);
 
     // Actualización del carrusel de promociones
@@ -76,24 +83,20 @@ function Home({ navigation }) {
     }, []);
 
     useEffect(() => {
-        // Solo actualiza la promoción que no está asociada al modal
-        if (!modalVisible) {
-            setModalPromo(promotions[currentPromoIndex]);
-        }
+        setCurrentPromo(promotions[currentPromoIndex]);
     }, [currentPromoIndex]);
 
-    const handlePromoClick = (promo) => {
-        setModalPromo(promo); // Establecer la promoción seleccionada en el modal
-        setModalVisible(true); // Abrir el modal
+    const handlePromoClick = () => {
+        setModalVisible(true);
     };
 
     const handleAddToCart = () => {
-        setCart((prevCart) => [...prevCart, modalPromo]); // Usar modalPromo en lugar de currentPromo
-        setModalVisible(false); // Cerrar el modal después de añadir al carrito
+        addToCart(currentPromo);
+        setModalVisible(false);
     };
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             {/* Encabezado */}
             <View style={styles.ContainerHeader}>
                 <TouchableOpacity onPress={() => navigation.navigate('Cuenta')} style={styles.iconoContainerUserHome}>
@@ -102,18 +105,30 @@ function Home({ navigation }) {
                 <View style={styles.Buscar}>
                     <TextInput style={styles.BuscarText} placeholder="Buscar..." />
                 </View>
+                <TouchableOpacity
+                    style={styles.cartContainer}
+                    onPress={() => navigation.navigate('Cart')}
+                >
+                    <Image source={cartIcon} style={styles.cartIcon} />
+                    {cart.length > 0 && (
+                        <View style={styles.cartBadge}>
+                            <Text style={styles.cartBadgeText}>{cart.length}</Text>
+                        </View>
+                    )}
+                </TouchableOpacity>
             </View>
+
 
             {/* Sección de Promociones */}
             <View style={styles.promotionsContainer}>
                 <Text style={styles.promotionsTitle}>PROMOCIONES!</Text>
-                <TouchableOpacity onPress={() => handlePromoClick(promotions[currentPromoIndex])} style={styles.promoItem}>
+                <TouchableOpacity onPress={handlePromoClick} style={styles.promoItem}>
                     <Animated.Image
-                        source={promotions[currentPromoIndex].image}
+                        source={currentPromo.image}
                         style={[styles.promoImage, { opacity: fadeAnim }]}
-                        resizeMode="cover" // Evita que la imagen se distorsione o se "tinte"
+                        resizeMode="cover"
                     />
-                    <Text style={styles.promoText}>{promotions[currentPromoIndex].name}</Text>
+                    <Text style={styles.promoText}>{currentPromo.name}</Text>
                 </TouchableOpacity>
             </View>
 
@@ -126,11 +141,11 @@ function Home({ navigation }) {
             >
                 <View style={modalStyles.modalContainer}>
                     <View style={modalStyles.modalContent}>
-                        <Image source={modalPromo.image} style={modalStyles.modalImage} />
-                        <Text style={modalStyles.modalTitle}>{modalPromo.name}</Text>
-                        <Text style={modalStyles.modalCost}>Costo: {modalPromo.cost}</Text>
-                        <Text style={modalStyles.modalTime}>Tiempo de preparación: {modalPromo.time}</Text>
-                        <Text style={modalStyles.modalDescription}>{modalPromo.description}</Text>
+                        <Image source={currentPromo.image} style={modalStyles.modalImage} />
+                        <Text style={modalStyles.modalTitle}>{currentPromo.name}</Text>
+                        <Text style={modalStyles.modalCost}>Costo: {currentPromo.cost}</Text>
+                        <Text style={modalStyles.modalTime}>Tiempo de preparación: {currentPromo.time}</Text>
+                        <Text style={modalStyles.modalDescription}>{currentPromo.description}</Text>
                         <TouchableOpacity
                             style={modalStyles.addButton}
                             onPress={handleAddToCart}
@@ -153,7 +168,7 @@ function Home({ navigation }) {
                 <FlatList
                     data={suggestionImages}
                     keyExtractor={(item, index) => index.toString()}
-                    horizontal
+                    numColumns={2} // Grid de 2 columnas
                     renderItem={({ item }) => (
                         <View style={styles.suggestionItem}>
                             <Image source={item} style={styles.suggestionImage} />

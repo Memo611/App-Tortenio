@@ -11,13 +11,13 @@ import Register from '../screens/Register/index'
 import Cuenta from '../screens/Cuenta/index'
 import Menu from '../screens/Menu/index'
 import Notificaciones from '../screens/Notificaciones/index'
-import Carrito from '../screens/Carrito/index'
+import Cart from '../screens/Carrito/index'
 
 // Icons
-const homeIcon = require('../../assets/home.png');
-const notificationsIcon = require('../../assets/notifications.png');
-const menuIcon = require('../../assets/Menu.png');
-const cartIcon = require('../../assets/shopping_cart_checkout.png');
+const homeIcon = require('../../assets/iconos/home.png');
+const notificationsIcon = require('../../assets/iconos/notifications.png');
+const menuIcon = require('../../assets/iconos/Menu.png');
+const cartIcon = require('../../assets/iconos/shopping_cart_checkout.png');
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ function MainTabs() {
                     iconSource = notificationsIcon;
                 } else if (route.name === 'Menu') {
                     iconSource = menuIcon;
-                } else if (route.name === 'Carrito') {
+                } else if (route.name === 'Cart') {
                     iconSource = cartIcon;
                 }
 
@@ -72,7 +72,7 @@ function MainTabs() {
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
             <Tab.Screen name="Notificaciones" component={Notificaciones} options={{ headerShown: false }} />
             <Tab.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
-            <Tab.Screen name="Carrito" component={Carrito} options={{ headerShown: false }} />
+            <Tab.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
         </Tab.Navigator>
     );
 }
@@ -84,6 +84,7 @@ function ContainerRoutes() {
                 <Stack.Screen name='Cuenta'component={Cuenta} options={{headerShown: false}} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name='Register' component={Register} options={{headerShown: false}}/>
+                <Stack.Screen name="Cart" component={Cart} />
                 <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>

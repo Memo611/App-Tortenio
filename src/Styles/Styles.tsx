@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: '#ddd',
+        borderColor: '#aaa',
         borderWidth: 1,
         borderRadius: 15,
         paddingHorizontal: 15,
@@ -34,6 +34,8 @@ const styles = StyleSheet.create({
     //Global
     icon: {
         marginRight: 10,
+        fontSize: 20,
+        borderRadius: 40,
     },
     //Global
     input: {
@@ -46,6 +48,14 @@ const styles = StyleSheet.create({
         fontSize: 12,
         marginTop: 4,
     },
+        iconEye: {
+            fontSize: 20, // Ajusta el tamaño del ícono
+            marginHorizontal: 10, // Espaciado horizontal alrededor del ícono
+            textAlignVertical: 'center', // Centra el ícono verticalmente
+            alignItems: 'center',
+            top: 17
+        },
+    
 });
 
 export default styles;

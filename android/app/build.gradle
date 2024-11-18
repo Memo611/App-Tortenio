@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -58,6 +59,10 @@ react {
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
 def enableProguardInReleaseBuilds = false
+project.ext.vectoricons = [
+    iconFontNames: [ "MaterialIcons.ttf" ] // Incluye Material Icons
+]
+
 
 /**
  * The preferred build flavor of JavaScriptCore (JSC)

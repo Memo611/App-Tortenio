@@ -9,11 +9,12 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center',
         backgroundColor: '#D64619',
-        alignItems: 'center',
+        alignItems: 'baseline',
     },
     logoContainer: {
+        margin: 'auto',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 30,
         marginBottom: -20,
     },
     logo: {
@@ -69,8 +70,12 @@ const styles = StyleSheet.create({
         color: '#D64619',
         fontWeight: 'bold',
     },
-
-
+    passwordToggle:{
+        position: 'absolute',
+        right: 20,            
+        top: 6,              
+        zIndex: 1,            
+    }
 });
 
 export default styles;

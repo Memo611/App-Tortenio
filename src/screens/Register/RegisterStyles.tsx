@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     iconoContainerUser: {
+        margin: 'auto',
         height: 40,
         marginTop: 20,
         marginBottom: 40,
@@ -24,12 +25,12 @@ const styles = StyleSheet.create({
     changePhotoButton: {
         backgroundColor: '#ffac72',
         padding: 10,
-        borderRadius: 20,
+        borderRadius: 30,
         borderWidth: 2,
-        borderColor: 'white',
+        borderColor: 'black',
         position: 'absolute',
         bottom: -150,
-        right: 10,
+        right: 0,
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     halfInputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderColor: '#ddd',
+        borderColor: '#aaa',
         borderWidth: 1,
         borderRadius: 15,
         paddingHorizontal: 15,

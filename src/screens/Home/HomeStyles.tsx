@@ -120,12 +120,15 @@ const styles = StyleSheet.create({
     },
     suggestionItem: {
         flex: 1,
-        margin: 5,
+        margin: 10,
+        marginLeft:20,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
         elevation: 2,
         backgroundColor: '#fff',
+        width: 160,
+        height: 160,
     },
     suggestionImage: {
         width: 120,

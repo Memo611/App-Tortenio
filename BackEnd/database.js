@@ -1,7 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 
 // Crear o abrir la base de datos
-const db = new sqlite3.Database('C:/AndroidStudio/App-Tortenio/Tortenio.db', (err) => {
+const db = new sqlite3.Database('../Tortenio.db', (err) => {
   if (err) {
     console.error('Error al conectar con la base de datos:', err.message);
     return;

@@ -18,6 +18,7 @@ const homeIcon = require('../../assets/iconos/home.png');
 const notificationsIcon = require('../../assets/iconos/notifications.png');
 const menuIcon = require('../../assets/iconos/Menu.png');
 const cartIcon = require('../../assets/iconos/shopping_cart_checkout.png');
+const iconUser = require('../../assets/iconUser.png');
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,7 @@ const Tab = createBottomTabNavigator();
 // Tab Navigator
 function MainTabs() {
     return (
-        <Tab.Navigator
+        <Tab.Navigator initialRouteName='Home'
         screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
                 let iconSource;
@@ -37,8 +38,8 @@ function MainTabs() {
                     iconSource = notificationsIcon;
                 } else if (route.name === 'Menu') {
                     iconSource = menuIcon;
-                } else if (route.name === 'Cart') {
-                    iconSource = cartIcon;
+                } else if (route.name === 'Cuenta') {
+                    iconSource = iconUser;
                 }
 
                 // Renderiza la imagen con un estilo específico
@@ -69,10 +70,9 @@ function MainTabs() {
                 tabBarLabelStyle: { display: 'none' }, // Oculta los nombres de los tabs
             })}
         >
-            <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
             <Tab.Screen name="Notificaciones" component={Notificaciones} options={{ headerShown: false }} />
-            <Tab.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
-            <Tab.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+            <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+            <Tab.Screen name="Cuenta" component={Cuenta} options={{ headerShown: false }} />
         </Tab.Navigator>
     );
 }
@@ -81,10 +81,10 @@ function ContainerRoutes() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen name='Cuenta'component={Cuenta} options={{headerShown: false}} />
+                <Stack.Screen name='menu'component={Menu} options={{headerShown: false}} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen name='Register' component={Register} options={{headerShown: false}}/>
-                <Stack.Screen name="Cart" component={Cart} />
+                <Stack.Screen name="Cart" component={Cart} options={{headerShown: false}} />
                 <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>

@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
     IconoUserHome: {
         width: 35,
         height: 35,
-        borderRadius: 50,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        backgroundColor: 'white',
     },
     ContainerHeader: {
         backgroundColor: '#fd5b12',

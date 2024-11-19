@@ -17,6 +17,7 @@ import { CartContext } from '../../context/CartContext';
 const logo = require('../../../assets/logo.jpg');
 const iconUser = require('../../../assets/iconUser.png');
 const cartIcon = require('../../../assets/iconos/shopping_cart_checkout.png');
+const menuIcon = require('../../../assets/iconos/Menu.png');
 
 const promotions = [
     {
@@ -136,8 +137,8 @@ function Home({ navigation }) {
         <View style={{ flex: 1 }}>
             {/* Encabezado */}
             <View style={styles.ContainerHeader}>
-                <TouchableOpacity onPress={() => navigation.navigate('Cuenta')} style={styles.iconoContainerUserHome}>
-                    <Image source={iconUser} style={styles.IconoUserHome} />
+                <TouchableOpacity onPress={() => navigation.navigate('menu')} style={styles.iconoContainerUserHome}>
+                    <Image source={menuIcon} style={styles.IconoUserHome} />
                 </TouchableOpacity>
                 <View style={styles.Buscar}>
                     <TextInput style={styles.BuscarText} placeholder="Buscar..." />

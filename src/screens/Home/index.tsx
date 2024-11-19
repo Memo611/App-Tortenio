@@ -121,6 +121,7 @@ function Home({ navigation }) {
     }, [currentPromoIndex]);
 
     const handlePromoClick = () => {
+        setCurrentSuggestion(null);
         setModalVisible(true);
     };
 
@@ -179,22 +180,22 @@ function Home({ navigation }) {
             >
                 <View style={modalStyles.modalContainer}>
                     <View style={modalStyles.modalContent}>
-                        {/* Aquí verificamos si currentSuggestion está definido. Si no lo está, mostramos la promoción */}
+                        {/* Verifica si hay una sugerencia seleccionada; si no, muestra la promoción actual */}
                         <Image
-                            source={(currentSuggestion || currentPromo).image}
+                            source={currentSuggestion ? currentSuggestion.image : currentPromo.image}
                             style={modalStyles.modalImage}
                         />
                         <Text style={modalStyles.modalTitle}>
-                            {(currentSuggestion || currentPromo).name}
+                            {currentSuggestion ? currentSuggestion.name : currentPromo.name}
                         </Text>
                         <Text style={modalStyles.modalCost}>
-                            Costo: {(currentSuggestion || currentPromo).cost}
+                            Costo: {currentSuggestion ? currentSuggestion.cost : currentPromo.cost}
                         </Text>
                         <Text style={modalStyles.modalTime}>
-                            Tiempo de preparación: {(currentSuggestion || currentPromo).time}
+                            Tiempo de preparación: {currentSuggestion ? currentSuggestion.time : currentPromo.time}
                         </Text>
                         <Text style={modalStyles.modalDescription}>
-                            {(currentSuggestion || currentPromo).description}
+                            {currentSuggestion ? currentSuggestion.description : currentPromo.description}
                         </Text>
                         <TouchableOpacity
                             style={modalStyles.addButton}
@@ -211,6 +212,7 @@ function Home({ navigation }) {
                     </View>
                 </View>
             </Modal>
+
 
 
             {/* Sección de Sugerencias del Día */}

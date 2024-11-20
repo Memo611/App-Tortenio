@@ -27,35 +27,35 @@ const Tab = createBottomTabNavigator();
 function MainTabs() {
     return (
         <Tab.Navigator initialRouteName='Home'
-        screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, color, size }) => {
-                let iconSource;
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconSource;
 
-                // Asigna las imágenes según el nombre del tab
-                if (route.name === 'Home') {
-                    iconSource = homeIcon;
-                } else if (route.name === 'Notificaciones') {
-                    iconSource = notificationsIcon;
-                } else if (route.name === 'Menu') {
-                    iconSource = menuIcon;
-                } else if (route.name === 'Cuenta') {
-                    iconSource = iconUser;
-                }
+                    // Asigna las imágenes según el nombre del tab
+                    if (route.name === 'Home') {
+                        iconSource = homeIcon;
+                    } else if (route.name === 'Notificaciones') {
+                        iconSource = notificationsIcon;
+                    } else if (route.name === 'Menu') {
+                        iconSource = menuIcon;
+                    } else if (route.name === 'Cuenta') {
+                        iconSource = iconUser;
+                    }
 
-                // Renderiza la imagen con un estilo específico
-                return (
-                    <Image
-                        source={iconSource}
-                        style={{
-                            width: size * 1.7,
-                            height: size * 1.7,
-                            tintColor: focused ? '#c52d09' : 'white', // Cambia el color de la imagen según el estado del tab
-                            alignSelf: 'center',
-                            marginTop: 20,
-                        }}
-                    />
-                );
-            },
+                    // Renderiza la imagen con un estilo específico
+                    return (
+                        <Image
+                            source={iconSource}
+                            style={{
+                                width: size * 1.7,
+                                height: size * 1.7,
+                                tintColor: focused ? '#c52d09' : 'white', // Cambia el color de la imagen según el estado del tab
+                                alignSelf: 'center',
+                                marginTop: 20,
+                            }}
+                        />
+                    );
+                },
                 tabBarActiveTintColor: '#c52d09', // Color para el ícono activo
                 tabBarInactiveTintColor: 'white', // Color para el ícono inactivo
                 tabBarStyle: {
@@ -63,9 +63,19 @@ function MainTabs() {
                     borderTopLeftRadius: 10, // Bordes redondeados a la izquierda
                     borderTopRightRadius: 10, // Bordes redondeados a la derecha
                     height: 60, // Ajusta la altura del tab
+                    paddingBottom: 0,
+                    marginBottom: 0, 
+                    justifyContent: 'center', 
+                    elevation: 0, 
+                    shadowOpacity: 0,
                     position: 'absolute',
                     left: 10,
                     right: 10,
+                },
+                tabBarItemStyle: {
+                    marginLeft: 85,
+                    justifyContent: 'center',  // Centra cada ítem verticalmente
+                    alignItems: 'center',      // Centra los ítems horizontalmente
                 },
                 tabBarLabelStyle: { display: 'none' }, // Oculta los nombres de los tabs
             })}
@@ -73,6 +83,14 @@ function MainTabs() {
             <Tab.Screen name="Notificaciones" component={Notificaciones} options={{ headerShown: false }} />
             <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
             <Tab.Screen name="Cuenta" component={Cuenta} options={{ headerShown: false }} />
+            <Tab.Screen
+                name="Cart"
+                component={Cart}
+                options={{
+                    headerShown: false,
+                    tabBarButton: () => null, // Oculta Cart del menú
+                }}
+            />
         </Tab.Navigator>
     );
 }
@@ -81,10 +99,10 @@ function ContainerRoutes() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen name='menu'component={Menu} options={{headerShown: false}} />
+                <Stack.Screen name='menu' component={Menu} options={{ headerShown: false }} />
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-                <Stack.Screen name='Register' component={Register} options={{headerShown: false}}/>
-                <Stack.Screen name="Cart" component={Cart} options={{headerShown: false}} />
+                <Stack.Screen name='Register' component={Register} options={{ headerShown: false }} />
+                <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
                 <Stack.Screen name="Main" component={MainTabs} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>

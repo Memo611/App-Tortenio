@@ -22,7 +22,6 @@ export const CartProvider = ({ children }) => {
             time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             status: 'Orden Aceptada', // Estado inicial
             progress: 0, // Progreso inicial
-            statusIcon: 'checkmark-circle',
             orderSummary, // Detalles del pedido
         };
 
@@ -35,9 +34,9 @@ export const CartProvider = ({ children }) => {
     // Función para actualizar el progreso de una notificación
     const updateNotificationProgress = (id) => {
         const steps = [
-            { status: 'Orden Aceptada', progress: 33, statusIcon: 'checkmark-circle' },
-            { status: 'En Preparación', progress: 66, statusIcon: 'time' },
-            { status: 'Pedido Listo', progress: 100, statusIcon: 'checkmark-done-circle' },
+            { status: 'Orden Aceptada', progress: 33 },
+            { status: 'En Preparación', progress: 66},
+            { status: 'Pedido Listo', progress: 100 },
         ];
 
         steps.forEach((step, index) => {
@@ -45,13 +44,14 @@ export const CartProvider = ({ children }) => {
                 setNotifications((prevNotifications) =>
                     prevNotifications.map((notification) =>
                         notification.id === id
-                            ? { ...notification, status: step.status, progress: step.progress, statusIcon: step.statusIcon}
+                            ? { ...notification, status: step.status, progress: step.progress}
                             : notification
                     )
                 );
             }, index * 7000); // Cambiar cada 7 segundos (ajusta el tiempo según sea necesario)
         });
     };
+
 
     const addToCart = (item) => {
         setCart((prevCart) => {

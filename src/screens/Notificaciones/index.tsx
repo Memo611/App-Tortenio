@@ -5,7 +5,12 @@ import { CartContext } from '../../context/CartContext'; // Importar el contexto
 
 const NotificationScreen = () => {
     const { notifications } = useContext(CartContext); // Obtener las notificaciones del contexto
-     // Verifica el valor de statusIcon
+    const statusIcons = {
+        'Orden Aceptada': 'check-circle',
+        'En Preparación': 'hourglass-empty',
+        'Pedido Listo': 'check-circle-outline',
+    };
+    // Verifica el valor de statusIcon
     const renderNotification = ({ item }) => (
 
         <View style={styles.notificationCard}>
@@ -16,7 +21,11 @@ const NotificationScreen = () => {
             <Text style={styles.notificationDescription}>{item.productDetails}</Text>
             <View style={styles.notificationFooter}>
                 <Text style={styles.notificationDescription}>{item.status}</Text>
-                <MaterialIcons  name={item.statusIcon} size={24} color="black" />
+                <MaterialIcons
+                    name={statusIcons[item.status] || 'help-outline'} // Usa 'help-outline' como fallback
+                    size={24}
+                    color="black"
+                />
             </View>
             <View style={styles.progressBar}>
                 <View style={[styles.progress, { width: `${item.progress}%` }]} />

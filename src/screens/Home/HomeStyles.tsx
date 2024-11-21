@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     },
     suggestionsContainer: {
         padding: 0,
+        marginTop: -20, 
         marginLeft: 55,
     },
     suggestionsTitle: {

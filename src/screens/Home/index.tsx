@@ -9,16 +9,20 @@ import {
     StyleSheet,
     Animated,
     FlatList,
+    SafeAreaView,
+    ScrollView,
 } from 'react-native';
-import styles from './HomeStyles';
-import modalStyles from './modalStyles';
-import { CartContext } from '../../context/CartContext';
+import styles from './HomeStyles'; // Estilos de la pantalla principal
+import modalStyles from './modalStyles'; // Estilos del modal
+import { CartContext } from '../../context/CartContext'; // Contexto del carrito de compras
 
+// Importación de activos
 const logo = require('../../../assets/logo.jpg');
 const iconUser = require('../../../assets/iconUser.png');
 const cartIcon = require('../../../assets/iconos/shopping_cart_checkout.png');
 const menuIcon = require('../../../assets/iconos/Menu.png');
 
+// Datos de prueba para promociones
 const promotions = [
     {
         id: 1,
@@ -49,6 +53,7 @@ const promotions = [
     },
 ];
 
+// Datos de prueba para sugerencias
 const suggestions = [
     {
         id: 3,
@@ -88,15 +93,20 @@ const suggestions = [
     },
 ];
 
+/**
+ * Pantalla principal del Home.
+ * 
+ * @param {Object} props - Propiedades pasadas al componente.
+ */
 function Home({ navigation }) {
-    const [currentPromoIndex, setCurrentPromoIndex] = useState(0);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [currentPromo, setCurrentPromo] = useState(promotions[0]);
-    const [currentSuggestion, setCurrentSuggestion] = useState(null);
-    const { cart, addToCart } = useContext(CartContext);
-    const fadeAnim = new Animated.Value(1);
+    const [currentPromoIndex, setCurrentPromoIndex] = useState(0); // Índice actual de la promoción
+    const [modalVisible, setModalVisible] = useState(false); // Estado de visibilidad del modal
+    const [currentPromo, setCurrentPromo] = useState(promotions[0]); // Promoción actual mostrada
+    const [currentSuggestion, setCurrentSuggestion] = useState(null); // Sugerencia seleccionada
+    const { cart, addToCart } = useContext(CartContext); // Estado del carrito desde el contexto
+    const fadeAnim = new Animated.Value(1); // Animación de desvanecimiento
 
-    // Actualización del carrusel de promociones
+    // Actualización automática del carrusel de promociones
     useEffect(() => {
         const interval = setInterval(() => {
             Animated.timing(fadeAnim, {
@@ -113,125 +123,155 @@ function Home({ navigation }) {
             });
         }, 15000);
 
-        return () => clearInterval(interval);
+        return () => clearInterval(interval); // Limpieza del intervalo al desmontar
     }, []);
 
+    // Cambiar la promoción actual cuando cambie el índice
     useEffect(() => {
         setCurrentPromo(promotions[currentPromoIndex]);
     }, [currentPromoIndex]);
 
+    // Manejar la selección de una promoción
     const handlePromoClick = () => {
         setCurrentSuggestion(null);
         setModalVisible(true);
     };
 
+    // Agregar promoción o sugerencia al carrito
     const handleAddToCart = () => {
-        addToCart(currentPromo);
+        const item = currentSuggestion || currentPromo;
+        addToCart(item);
         setModalVisible(false);
     };
 
+    // Manejar la selección de una sugerencia
     const handleSuggestionClick = (item) => {
-        setCurrentSuggestion(item);  // Cambia solo el producto de la sugerencia
-        setModalVisible(true);        // Abre el modal
+        setCurrentSuggestion(item);
+        setModalVisible(true);
     };
+
+    // Renderización principal del componente
     return (
-        <View style={{ flex: 1 }}>
-            {/* Encabezado */}
-            <View style={styles.ContainerHeader}>
-                <TouchableOpacity onPress={() => navigation.navigate('menu')} style={styles.iconoContainerUserHome}>
-                    <Image source={menuIcon} style={styles.IconoUserHome} />
-                </TouchableOpacity>
-                <View style={styles.Buscar}>
-                    <TextInput style={styles.BuscarText} placeholder="Buscar..." />
-                </View>
-                <TouchableOpacity
-                    style={styles.cartContainer}
-                    onPress={() => navigation.navigate('Cart')}
-                >
-                    <Image source={cartIcon} style={styles.cartIcon} />
-                    {cart.length > 0 && (
-                        <View style={styles.cartBadge}>
-                            <Text style={styles.cartBadgeText}>{cart.length}</Text>
-                        </View>
-                    )}
-                </TouchableOpacity>
-            </View>
-
-
-            {/* Sección de Promociones */}
-            <View style={styles.promotionsContainer}>
-                <Text style={styles.promotionsTitle}>PROMOCIONES!</Text>
-                <TouchableOpacity onPress={handlePromoClick} style={styles.promoItem}>
-                    <Animated.Image
-                        source={currentPromo.image}
-                        style={[styles.promoImage, { opacity: fadeAnim }]}
-                        resizeMode="cover"
-                    />
-                    <Text style={styles.promoText}>{currentPromo.name}</Text>
-                </TouchableOpacity>
-            </View>
-
-            {/* Modal de Detalles de Promoción */}
-            <Modal
-                visible={modalVisible}
-                animationType="slide"
-                transparent={true}
-                onRequestClose={() => setModalVisible(false)}
-            >
-                <View style={modalStyles.modalContainer}>
-                    <View style={modalStyles.modalContent}>
-                        {/* Verifica si hay una sugerencia seleccionada; si no, muestra la promoción actual */}
-                        <Image
-                            source={currentSuggestion ? currentSuggestion.image : currentPromo.image}
-                            style={modalStyles.modalImage}
-                        />
-                        <Text style={modalStyles.modalTitle}>
-                            {currentSuggestion ? currentSuggestion.name : currentPromo.name}
-                        </Text>
-                        <Text style={modalStyles.modalCost}>
-                            Costo: {currentSuggestion ? currentSuggestion.cost : currentPromo.cost}
-                        </Text>
-                        <Text style={modalStyles.modalTime}>
-                            Tiempo de preparación: {currentSuggestion ? currentSuggestion.time : currentPromo.time}
-                        </Text>
-                        <Text style={modalStyles.modalDescription}>
-                            {currentSuggestion ? currentSuggestion.description : currentPromo.description}
-                        </Text>
+        <SafeAreaView style={styles.safeArea}>
+            <ScrollView contentContainerStyle={styles.content}>
+                <View style={styles.container}>
+                    {/* Encabezado */}
+                    <View style={styles.ContainerHeader}>
+                        {/* Botón de menú */}
                         <TouchableOpacity
-                            style={modalStyles.addButton}
-                            onPress={handleAddToCart}
+                            onPress={() => navigation.navigate('menu')}
+                            style={styles.iconoContainerUserHome}
                         >
-                            <Text style={modalStyles.addButtonText}>Agregar al Carrito</Text>
+                            <Image source={menuIcon} style={styles.IconoUserHome} />
                         </TouchableOpacity>
+
+                        {/* Barra de búsqueda */}
+                        <View style={styles.Buscar}>
+                            <TextInput style={styles.BuscarText} placeholder="Buscar..." />
+                        </View>
+
+                        {/* Carrito */}
                         <TouchableOpacity
-                            style={modalStyles.closeButton}
-                            onPress={() => setModalVisible(false)}
+                            style={styles.cartContainer}
+                            onPress={() => navigation.navigate('Cart')}
                         >
-                            <Text style={modalStyles.closeButtonText}>Cerrar</Text>
+                            <Image source={cartIcon} style={styles.cartIcon} />
+                            {cart.length > 0 && (
+                                <View style={styles.cartBadge}>
+                                    <Text style={styles.cartBadgeText}>{cart.length}</Text>
+                                </View>
+                            )}
                         </TouchableOpacity>
                     </View>
-                </View>
-            </Modal>
 
-
-
-            {/* Sección de Sugerencias del Día */}
-            <View style={styles.suggestionsContainer}>
-                <Text style={styles.suggestionsTitle}>Sugerencias del Día</Text>
-                <FlatList
-                    data={suggestions}
-                    keyExtractor={(item) => item.id.toString()}
-                    numColumns={2} // Grid de 2 columnas
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleSuggestionClick(item)}>
-                            <View style={styles.suggestionItem}>
-                                <Image source={item.image} style={styles.suggestionImage} />
-                            </View>
+                    {/* Sección de Promociones */}
+                    <View style={styles.promotionsContainer}>
+                        <Text style={styles.promotionsTitle}>PROMOCIONES!</Text>
+                        <TouchableOpacity onPress={handlePromoClick} style={styles.promoItem}>
+                            {/* Asegúrate de que la imagen no herede colores del contenedor */}
+                            <Animated.Image
+                                source={currentPromo.image}
+                                style={[styles.promoImage, { opacity: fadeAnim }]}
+                                resizeMode="contain"
+                            />
+                            <Text style={styles.promoText}>{currentPromo.name}</Text>
                         </TouchableOpacity>
-                    )}
-                />
-            </View>
-        </View>
+                    </View>
+
+                    {/* Modal de Detalles */}
+                    <Modal
+                        visible={modalVisible}
+                        animationType="slide"
+                        transparent={true}
+                        onRequestClose={() => setModalVisible(false)}
+                    >
+                        <View style={modalStyles.modalContainer}>
+                            <View style={modalStyles.modalContent}>
+                                {/* Mostrar datos dinámicos según sea promoción o sugerencia */}
+                                <Image
+                                    source={(currentSuggestion || currentPromo).image}
+                                    style={modalStyles.modalImage}
+                                />
+                                <Text style={modalStyles.modalTitle}>
+                                    {(currentSuggestion || currentPromo).name}
+                                </Text>
+                                <Text style={modalStyles.modalCost}>
+                                    Costo: {(currentSuggestion || currentPromo).cost}
+                                </Text>
+                                <Text style={modalStyles.modalTime}>
+                                    Tiempo: {(currentSuggestion || currentPromo).time}
+                                </Text>
+                                <Text style={modalStyles.modalDescription}>
+                                    {(currentSuggestion || currentPromo).description}
+                                </Text>
+
+                                {/* Botón para agregar al carrito */}
+                                <TouchableOpacity
+                                    style={modalStyles.addButton}
+                                    onPress={handleAddToCart}
+                                >
+                                    <Text style={modalStyles.addButtonText}>Agregar al Carrito</Text>
+                                </TouchableOpacity>
+
+                                {/* Botón para cerrar el modal */}
+                                <TouchableOpacity
+                                    style={modalStyles.closeButton}
+                                    onPress={() => setModalVisible(false)}
+                                >
+                                    <Text style={modalStyles.closeButtonText}>Cerrar</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
+                    {/* Sección de Sugerencias */}
+                    <View style={styles.suggestionsContainer}>
+                        <Text style={styles.suggestionsTitle}>Sugerencias del Día</Text>
+                        <FlatList
+                            data={suggestions}
+                            keyExtractor={(item) => item.id.toString()}
+                            numColumns={2} // Mostrar en formato de grid
+                            renderItem={({ item }) => (
+                                <TouchableOpacity onPress={() => handleSuggestionClick(item)}>
+                                    <View style={styles.suggestionItem}>
+                                        <Image source={item.image} style={styles.suggestionImage} />
+                                    </View>
+                                </TouchableOpacity>
+                            )}
+                        />
+                    </View>
+                    {/* Tarjeta interactiva para "Ver Menú Completo" */}
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('Menu')}
+                        style={styles.menuCard}
+                    >
+                        <View style={styles.menuCardTextContainer}>
+                            <Text style={styles.menuCardTitle}>Ver Menú Completo</Text>
+                            <Text style={styles.menuCardSubtitle}>Descubre todos nuestros platillos deliciosos.</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 

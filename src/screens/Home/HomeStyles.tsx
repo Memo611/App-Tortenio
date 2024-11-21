@@ -1,6 +1,18 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1, // Asegura que el área segura ocupe toda la pantalla
+        backgroundColor: '#fff', // Fondo blanco para toda la pantalla
+    },
+    content: {
+        flexGrow: 1, // Permite que el contenido se expanda según sea necesario
+    },
+    container: {
+        flex: 1, // Asegura que ocupe el espacio disponible
+        paddingBottom: 70, // Espacio adicional para evitar superposición con el Tab Navigator
+        backgroundColor: '#fff', // Fondo del contenedor principal
+    },
     iconoContainerUserHome: {
         height: 40,
         width: 40,
@@ -22,7 +34,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
-        height: 70,
+        height: 80,
     },
     Buscar: {
         flex: 1,
@@ -100,12 +112,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     suggestionsContainer: {
-        padding: 10,
+        padding: 0,
+        marginLeft: 55,
     },
     suggestionsTitle: {
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
+        marginRight: 60,
         marginVertical: 20,
         color: '#333',
     },
@@ -116,21 +130,47 @@ const styles = StyleSheet.create({
     },
     suggestionItem: {
         flex: 1,
-        margin: 10,
-        marginLeft:20,
+        margin: 15,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
         elevation: 2,
         backgroundColor: '#fff',
-        width: 160,
-        height: 160,
-    },
-    suggestionImage: {
         width: 120,
         height: 120,
+    },
+    suggestionImage: {
+        width: 100,
+        height: 100,
         borderRadius: 10,
     },
+    menuCard: {
+        marginVertical: 15,
+        margin: 10,
+        borderRadius: 15,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 5,
+        backgroundColor: '#fff',
+    },
+
+    menuCardTextContainer: {
+        padding: 10,
+        backgroundColor: '#fff',
+    },
+    menuCardTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#FF6347',
+    },
+    menuCardSubtitle: {
+        fontSize: 14,
+        color: '#555',
+    },
+
 });
 
 export default styles;

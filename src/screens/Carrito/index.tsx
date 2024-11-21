@@ -65,8 +65,9 @@ function CartScreen({ navigation }) {
                                         <TouchableOpacity
                                             style={styles.quantityButton}
                                             onPress={() => updateQuantity(index, item.quantity - 1)}
+                                            disabled={item.quantity <= 1} // Desactiva el botón si la cantidad es 1
                                         >
-                                            <Text style={styles.quantityText}>-</Text>
+                                            <Text style={[styles.quantityText, item.quantity <= 1 && styles.disabledText]}>-</Text>
                                         </TouchableOpacity>
                                         <Text style={styles.quantity}>{item.quantity}</Text>
                                         <TouchableOpacity
@@ -146,6 +147,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 2,
+    },
+    disabledText: {
+        color: 'gray', 
     },
     itemImage: {
         width: 80,
